@@ -1,0 +1,23 @@
+{
+  "name": "jenkins-backup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "async": "^2.4.0",
+    "shelljs": "^0.7.7",
+    "superagent": "^3.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jenkins",
+    "job",
+    "config.xml",
+    "backup"
+  ],
+  "author": "Afaren",
+  "license": "ISC"
+}
