@@ -3,6 +3,7 @@ const async = require('async');
 const shelljs = require('shelljs');
 const jenkins = process.env.jenkins;
 
+
 function backupJobConfig( job ) {
 	console.log(`backup config of job [ ${job.name} ] `);
 	shelljs.exec(`mkdir ${job.name}`, {silent: true});
@@ -16,7 +17,7 @@ function done(err) {
 
 }
 
-agent.get(`${jenkins}/api/json?pretty=true`)
+agent.get(`${jenkins}/api/json`)
 	.end((err, res) => {
 		if(err)
 			throw new Error();
