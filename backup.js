@@ -4,7 +4,8 @@ const shelljs = require('shelljs');
 const jenkins = process.env.jenkins;
 
 function backupJobConfig( job ) {
-	shelljs.mkdir(job.name);
+	console.log(`backup config of job [ ${job.name} ] `);
+	shelljs.exec(`mkdir ${job.name}`, {silent: true});
 	shelljs.exec(`curl ${jenkins}/job/${job.name}/config.xml > ${job.name}/config.xml`, {silent: true});
 }
 
@@ -20,7 +21,6 @@ agent.get(`${jenkins}/api/json?pretty=true`)
 		if(err)
 			throw new Error();
 		const jobs = res.body.jobs;
-		console.log(JSON.stringify(jobs, null, 2));
 		async.map(jobs, backupJobConfig, done);		 
 	}
 );
