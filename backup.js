@@ -1,10 +1,11 @@
 const agent = require('superagent');
 const async = require('async');
 const shelljs = require('shelljs');
+const jenkins = process.env.jenkins;
 
 function backupJobConfig( job ) {
 	shelljs.mkdir(job.name);
-	shelljs.exec(`curl localhost:8088/job/${job.name}/config.xml | tee  ${job.name}/config.xml`);
+	shelljs.exec(`curl ${jenkins}/job/${job.name}/config.xml | tee  ${job.name}/config.xml`);
 }
 
 function done(err) {
@@ -14,7 +15,7 @@ function done(err) {
 
 }
 
-agent.get('localhost:8088/api/json?pretty=true')
+agent.get(`${jenkins}/api/json?pretty=true`)
 	.end((err, res) => {
 		if(err)
 			throw new Error();
