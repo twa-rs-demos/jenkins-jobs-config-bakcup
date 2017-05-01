@@ -5,7 +5,7 @@ const jenkins = process.env.jenkins;
 
 function backupJobConfig( job ) {
 	shelljs.mkdir(job.name);
-	shelljs.exec(`curl ${jenkins}/job/${job.name}/config.xml | tee  ${job.name}/config.xml`);
+	shelljs.exec(`curl ${jenkins}/job/${job.name}/config.xml > ${job.name}/config.xml`, {silent: true});
 }
 
 function done(err) {
